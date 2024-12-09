@@ -1,0 +1,17 @@
+{
+	"name": "aoc_day_1",
+	"version": "1.0.0",
+	"description": "Advent of Code - Day 1",
+	"main": "day1.ts",
+	"scripts": {
+		"start": "ts-node day1.ts"
+	},
+	"keywords": [],
+	"author": "Joe Mancini",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^22.10.1",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.7.2"
+	}
+}
