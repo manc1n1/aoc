@@ -1,5 +1,7 @@
 import { readFileSync as fs } from 'fs';
 
+// Part One
+
 function readFileToArrays(filePath: string): {
 	locIDArr1: number[];
 	locIDArr2: number[];
@@ -46,4 +48,34 @@ function calcTotalDistance(arr1: number[], arr2: number[]): number {
 const filePath = './input.txt';
 const { locIDArr1, locIDArr2 } = readFileToArrays(filePath);
 
-console.log(calcTotalDistance(locIDArr1, locIDArr2));
+console.log('Total Distance: ', calcTotalDistance(locIDArr1, locIDArr2));
+
+// Part Two
+
+function countOccurence(num: number, arr: number[]): number {
+	return arr.reduce((acc, current) => {
+		return current === num ? acc + 1 : acc;
+	}, 0);
+}
+
+function calcSimilarityScore(arr1: number[], arr2: number[]): number {
+	let sortedLocIDArr1 = sortArray(arr1);
+	let sortedLocIDArr2 = sortArray(arr2);
+
+	if (sortedLocIDArr1.length !== sortedLocIDArr2.length) {
+		throw new Error('Arrays must be of the same length.');
+	}
+
+	let totalSimilarityScore = 0;
+
+	for (let i = 0; i < sortedLocIDArr1.length; i++) {
+		totalSimilarityScore += Math.abs(
+			sortedLocIDArr1[i] *
+				countOccurence(sortedLocIDArr1[i], sortedLocIDArr2),
+		);
+	}
+
+	return totalSimilarityScore;
+}
+
+console.log('Similarity Score: ', calcSimilarityScore(locIDArr1, locIDArr2));
